@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
+using Serilog;
 
 namespace BlazorExample.Pages
 {
@@ -22,6 +23,7 @@ namespace BlazorExample.Pages
         public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            Log.Error("Showing error page with request ID {RequestId}", RequestId);
         }
     }
 }

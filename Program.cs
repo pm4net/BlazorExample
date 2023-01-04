@@ -2,6 +2,7 @@ using BlazorExample.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Serilog;
+using Serilog.Filters;
 using Serilog.Sinks.OCEL;
 
 namespace BlazorExample
@@ -12,8 +13,9 @@ namespace BlazorExample
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
+                .Filter.ByExcluding(Matching.FromSource("Microsoft"))
                 .WriteTo.Console()
-                .WriteTo.OcelLiteDbSink(new LiteDbSinkOptions(string.Empty, "logs.db", RollingPeriod.Never))
+                .WriteTo.OcelLiteDbSink(new LiteDbSinkOptions(string.Empty, "blazor-logs.db", RollingPeriod.Never))
                 .CreateLogger();
 
             try

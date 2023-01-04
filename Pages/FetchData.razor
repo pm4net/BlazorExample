@@ -43,7 +43,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        Log.Information("Fetching forecast information");
+        Log.Information("Loaded Forecast page");
         forecasts = await ForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
     }
 }

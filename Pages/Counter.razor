@@ -12,6 +12,11 @@
 @code {
     private int currentCount = 0;
 
+    protected override void OnInitialized()
+    {
+        Log.Information("Loaded Counter page");
+    }
+
     private void IncrementCount()
     {
         Log.Information("Incrementing Count from {Now} to {Incremented}", currentCount, currentCount + 1);

@@ -14,6 +14,7 @@ namespace BlazorExample
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
                 .Filter.ByExcluding(Matching.FromSource("Microsoft"))
+                .Enrich.WithCorrelationId()
                 .WriteTo.Console()
                 .WriteTo.OcelLiteDbSink(new LiteDbSinkOptions(string.Empty, "blazor-logs.db", RollingPeriod.Never))
                 .CreateLogger();
@@ -27,6 +28,7 @@ namespace BlazorExample
                 builder.Services.AddRazorPages();
                 builder.Services.AddServerSideBlazor();
                 builder.Services.AddSingleton<WeatherForecastService>();
+                builder.Services.AddHttpContextAccessor();
 
                 var app = builder.Build();
 

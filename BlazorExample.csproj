@@ -8,7 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
-    <PackageReference Include="Serilog.Sinks.OCEL" Version="1.0.0-alpha.4" />
+    <PackageReference Include="Serilog.Enrichers.CallerInfo" Version="1.0.0-alpha.0" />
+    <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.OCEL" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

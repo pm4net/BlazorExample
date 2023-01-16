@@ -2,6 +2,7 @@ using BlazorExample.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Serilog;
+using Serilog.Enrichers.CallerInfo;
 using Serilog.Filters;
 using Serilog.Sinks.OCEL;
 
@@ -15,6 +16,7 @@ namespace BlazorExample
                 .MinimumLevel.Information()
                 .Filter.ByExcluding(Matching.FromSource("Microsoft"))
                 .Enrich.WithCorrelationId()
+                .Enrich.WithCallerInfo(false, "BlazorExample", "pm4net_")
                 .WriteTo.Console()
                 .WriteTo.OcelLiteDbSink(new LiteDbSinkOptions(string.Empty, "blazor-logs.db", RollingPeriod.Never))
                 .CreateLogger();

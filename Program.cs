@@ -19,6 +19,7 @@ namespace BlazorExample
                 .Enrich.WithCallerInfo(false, "BlazorExample", "pm4net_")
                 .WriteTo.Console()
                 .WriteTo.OcelLiteDbSink(new LiteDbSinkOptions(string.Empty, "blazor-logs.db", RollingPeriod.Never))
+                .WriteTo.Seq("http://localhost:5341")
                 .CreateLogger();
 
             try
